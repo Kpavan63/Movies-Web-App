@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Future Cinema - 2024's Most Innovative Movie Experience</title>
+    <title>MoviesBlast - Your Ultimate Movie Streaming Platform</title>
+    <meta name="description" content="Discover and stream the latest movies and TV shows on MoviesBlast. Enjoy high-quality content anytime, anywhere.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
         :root {
-            --primary-color: #00ffff;
-            --secondary-color: #ff00ff;
-            --background-color: #000033;
+            --primary-color: #e50914;
+            --secondary-color: #141414;
             --text-color: #ffffff;
-            --adult-color: #ff4757;
-            --card-bg: rgba(255, 255, 255, 0.1);
+            --overlay-color: rgba(0, 0, 0, 0.7);
         }
 
         * {
@@ -23,35 +25,23 @@
         }
 
         body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: var(--background-color);
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--secondary-color);
             color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        #background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            line-height: 1.6;
         }
 
         header {
+            background-color: var(--overlay-color);
+            padding: 1rem 2rem;
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: transform 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
-        header.header--hidden {
-            transform: translateY(-100%);
+        header.scrolled {
+            background-color: var(--secondary-color);
         }
 
         nav {
@@ -62,165 +52,50 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: bold;
             color: var(--primary-color);
         }
 
         nav ul {
             display: flex;
-            list-style: none;
+            list-style-type: none;
         }
 
         nav ul li {
-            margin-left: 2rem;
+            margin-left: 1rem;
         }
 
         nav ul li a {
             color: var(--text-color);
             text-decoration: none;
-            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        nav ul li a:hover,
-        nav ul li a.active {
-            color: var(--primary-color);
-        }
-
-        main {
-            padding: 6rem 1rem 2rem;
-        }
-
-        h1, h2 {
-            margin-bottom: 1rem;
-            text-align: left;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section {
-            margin-bottom: 2rem;
-        }
-
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            gap: 1rem;
-        }
-
-        .movie-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .movie-card:hover {
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
         }
 
-        .movie-card img {
-            width: 100%;
-            height: 225px;
-            object-fit: cover;
-        }
-
-        .movie-info {
-            padding: 0.5rem;
-        }
-
-        .movie-title {
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .movie-rating {
-            font-size: 0.8rem;
-            color: var(--primary-color);
-        }
-
-        .adult-content::before {
-            content: "18+";
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: var(--adult-color);
-            color: var(--text-color);
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .mobile-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-around;
-            padding: 0.5rem;
-            z-index: 1000;
-        }
-
-        .mobile-nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.8rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .mobile-nav a.active {
-            color: var(--primary-color);
-        }
-
-        .mobile-nav i {
-            font-size: 1.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        #content {
-            transition: opacity 0.3s ease;
-        }
-
-        .hamburger-menu {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        .sidebar {
+        .side-nav {
             position: fixed;
             top: 0;
             right: -300px;
             width: 300px;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
+            background-color: var(--overlay-color);
+            z-index: 1001;
             transition: right 0.3s ease;
-            padding: 2rem 1rem;
+            padding: 2rem;
+            overflow-y: auto;
         }
 
-        .sidebar.active {
+        .side-nav.open {
             right: 0;
         }
 
-        .sidebar-close {
+        .side-nav-close {
             position: absolute;
             top: 1rem;
             right: 1rem;
@@ -228,321 +103,698 @@
             cursor: pointer;
         }
 
-        .sidebar ul {
-            list-style: none;
+        .side-nav-search {
             margin-top: 2rem;
         }
 
-        .sidebar ul li {
+        .side-nav-search input {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        .side-nav-search button {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        main {
+            padding-top: 5rem;
+        }
+
+        .featured-movie {
+            position: relative;
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .featured-content {
+            max-width: 50%;
+            background-color: var(--overlay-color);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .featured-title {
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .sidebar ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
+        .featured-description {
+            font-size: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .sidebar ul li a:hover {
-            color: var(--primary-color);
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #f40612;
+        }
+
+        .movie-section {
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .movie-poster {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .movie-poster:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-poster img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .movie-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--overlay-color);
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .movie-details {
+            position: fixed;
+            width: 400px;
+            top: 0;
+            left: 500px;
+            right: 0;
+            bottom: 0;
+            background-color: var(--overlay-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .movie-details-content {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .movie-details-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .movie-details-poster {
+            width: 150px;
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .movie-details-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .movie-details-info {
+            margin-bottom: 1rem;
+        }
+
+        .movie-details-description {
+            margin-bottom: 1rem;
+        }
+
+        .movie-details-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        footer {
+            background-color: #000;
+            color: var(--text-color);
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--text-color);
+            font-size: 1.5rem;
         }
 
         @media (max-width: 768px) {
+            .featured-content {
+                max-width: 100%;
+            }
+
+            .featured-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
             nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--overlay-color);
+                padding: 1rem;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            nav ul.show {
+                display: flex;
+                transform: translateY(0);
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+                margin-left: 120px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+            #movies-grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center; /* Center the posters */
+            }
+            .movie-poster {
+                width: 150px; /* Smaller width for mobile screens */
+            }
+            .movie-details {
+                position: fixed;
+                width: 400px;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: var(--overlay-color);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 2000;
+            }
+            .movie-details-poster {
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-toggle {
                 display: none;
             }
 
-            .hamburger-menu {
-                display: block;
-            }
-
-            main {
-                padding-bottom: 4rem;
+            nav ul {
+                display: flex !important;
+                transform: none !important;
             }
         }
+
+        /* Animation for nav items */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav ul li {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        nav ul li:nth-child(1) { animation-delay: 0.1s; }
+        nav ul li:nth-child(2) { animation-delay: 0.2s; }
+        nav ul li:nth-child(3) { animation-delay: 0.3s; }
+        nav ul li:nth-child(4) { animation-delay: 0.4s; }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div id="background-animation"></div>
-    <header>
+    <header id="header">
         <nav>
-            <div class="logo">Future Cinema</div>
-            <ul>
-                <li><a href="#" class="active" data-page="home">Home</a></li>
-                <li><a href="#" data-page="movies">Movies</a></li>
-                <li><a href="#" data-page="tvshows">TV Shows</a></li>
-                <li><a href="#" data-page="adult">18+</a></li>
+            <div class="logo">MoviesBlast</div>
+            <ul id="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#movies">Movies</a></li>
+                <li><a href="#tv-shows">TV Shows</a></li>
+                <li><a href="#my-list">My List</a></li>
             </ul>
-            <div class="hamburger-menu">
+            <div id="mobile-menu-toggle" class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
+            </div>
+            <div id="side-nav-toggle">
+                <i class="fas fa-search"></i>
             </div>
         </nav>
     </header>
-    <div class="sidebar">
-        <div class="sidebar-close"><i class="fas fa-times"></i></div>
-        <ul>
-            <li><a href="#" data-page="home">Home</a></li>
-            <li><a href="#" data-page="movies">Movies</a></li>
-            <li><a href="#" data-page="tvshows">TV Shows</a></li>
-            <li><a href="#" data-page="adult">18+</a></li>
-            <li><a href="#" data-page="genres">Genres</a></li>
-            <li><a href="#" data-page="new-releases">New Releases</a></li>
-            <li><a href="#" data-page="coming-soon">Coming Soon</a></li>
-            <li><a href="#" data-page="about">About Us</a></li>
-            <li><a href="#" data-page="contact">Contact</a></li>
-        </ul>
+
+    <div class="side-nav" id="side-nav">
+        <div class="side-nav-close" id="side-nav-close">&times;</div>
+        <div class="side-nav-search">
+            <input type="text" id="side-nav-search-input" placeholder="Search movies...">
+            <button id="side-nav-search-button">Search</button>
+        </div>
     </div>
+
     <main>
-        <div id="content"></div>
+        <section id="home" class="featured-movie" style="display: none;">
+            <div class="featured-content">
+                <h2 class="featured-title" id="featured-title">Movie Title</h2>
+                <p class="featured-description" id="featured-description">Movie description goes here...</p>
+                <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+                <a href="#" class="btn"><i class="fas fa-info-circle"></i> More Info</a>
+            </div>
+        </section>
+
+        <section id="movies" class="movie-section">
+            <h3 class="section-title">Trending Now</h3>
+            <div class="swiper trending-carousel">
+                <div class="swiper-wrapper" id="trending-carousel"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+        <section id="tv-shows" class="movie-section">
+            <h3 class="section-title">Top Rated</h3>
+            <div class="swiper top-rated-carousel">
+                <div class="swiper-wrapper" id="top-rated-carousel"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+        <section id="my-list" class="movie-section">
+            <h3 class="section-title">All Movies</h3>
+            <div class="movies-grid" id="movies-grid"></div>
+        </section>
     </main>
+
+    <div id="movie-details" class="movie-details" style="display: none;">
+        <div class="movie-details-content">
+            <span class="movie-details-close" id="movie-details-close">&times;</span>
+            <center>
+                <img id="movie-details-poster" class="movie-details-poster" src="" alt="Movie Poster">
+
+            </center>
+            <h2 id="movie-details-title" class="movie-details-title"></h2>
+            <p id="movie-details-info" class="movie-details-info"></p>
+            <p id="movie-details-description" class="movie-details-description"></p>
+            <div class="movie-details-links">
+                <a href="#" id="movie-details-play" class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+                <a href="#" id="movie-details-download" class="btn"><i class="fas fa-download"></i> Download</a>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2024 Future Cinema. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Preferences</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
-    <nav class="mobile-nav">
-        <a href="#" class="active" data-page="home"><i class="fas fa-home"></i>Home</a>
-        <a href="#" data-page="movies"><i class="fas fa-film"></i>Movies</a>
-        <a href="#" data-page="tvshows"><i class="fas fa-tv"></i>TV Shows</a>
-        <a href="#" data-page="adult"><i class="fas fa-exclamation-circle"></i>18+</a>
-    </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
-        // Background animation
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('background-animation').appendChild(renderer.domElement);
-
-        const geometry = new THREE.BufferGeometry();
-        const vertices = [];
-        for (let i = 0; i < 10000; i++) {
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
+        // Function to fetch movie data from JSON
+        function fetchMovieData() {
+            return fetch('movies.json') // Update the path to your JSON file
+                .then(response => response.json())
+                .then(data => {
+                    return {
+                        allMovies: data.allMovies,
+                        trendingMovies: data.trending,
+                        topRatedMovies: data.topRated,
+                    };
+                })
+                .catch(error => console.error('Error loading the movie data:', error));
         }
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-        const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0x00ffff, size: 2 }));
-        scene.add(particles);
-
-        camera.position.z = 1000;
-
-        function animateBackground() {
-            requestAnimationFrame(animateBackground);
-            particles.rotation.x += 0.0005;
-            particles.rotation.y += 0.0005;
-            renderer.render(scene, camera);
-        }
-        animateBackground();
-
-        // Dynamic content loading
-        const movieData = {
-            featured: [
-                { title: "Quantum Horizon", rating: 9.2, image: "https://picsum.photos/800/600?random=1" },
-                { title: "Neon Dystopia", rating: 8.9, image: "https://picsum.photos/800/600?random=2" },
-                { title: "Astral Echoes", rating: 9.5, image: "https://picsum.photos/800/600?random=3" },
-                { title: "Quantum Horizon", rating: 9.2, image: "https://picsum.photos/800/600?random=1" },
-                { title: "Neon Dystopia", rating: 8.9, image: "https://picsum.photos/800/600?random=2" },
-                { title: "Astral Echoes", rating: 9.5, image: "https://picsum.photos/800/600?random=3" },
-                { title: "Quantum Horizon", rating: 9.2, image: "https://picsum.photos/800/600?random=1" },
-                { title: "Neon Dystopia", rating: 8.9, image: "https://picsum.photos/800/600?random=2" },
-                { title: "Astral Echoes", rating: 9.5, image: "https://picsum.photos/800/600?random=3" },
-                { title: "Quantum Horizon", rating: 9.2, image: "https://picsum.photos/800/600?random=1" },
-                { title: "Neon Dystopia", rating: 8.9, image: "https://picsum.photos/800/600?random=2" },
-                { title: "Astral Echoes", rating: 9.5, image: "https://picsum.photos/800/600?random=3" },
-                { title: "Quantum Horizon", rating: 9.2, image: "https://picsum.photos/800/600?random=1" },
-                { title: "Neon Dystopia", rating: 8.9, image: "https://picsum.photos/800/600?random=2" },
-                { title: "Astral Echoes", rating: 9.5, image: "https://picsum.photos/800/600?random=3" },
-                { title: "Quantum Horizon", rating: 9.2, image: "https://picsum.photos/800/600?random=1" },
-                { title: "Neon Dystopia", rating: 8.9, image: "https://picsum.photos/800/600?random=2" },
-                { title: "Astral Echoes", rating: 9.5, image: "https://picsum.photos/800/600?random=3" }
-            ],
-            movies: [
-                { title: "Cyber Nexus", rating: 8.7, image: "https://picsum.photos/200/300?random=4" },
-                { title: "Ethereal Dreams", rating: 9.1, image: "https://picsum.photos/200/300?random=5" },
-                { title: "Temporal Flux", rating: 8.8, image: "https://picsum.photos/200/300?random=6" },
-                { title: "Nebula Rising", rating: 9.3, image: "https://picsum.photos/200/300?random=7" },
-                { title: "Synthetic Souls", rating: 8.6, image: "https://picsum.photos/200/300?random=8" },
-                { title: "Quantum Entanglement", rating: 9.0, image: "https://picsum.photos/200/300?random=9" },
-                { title: "Galactic Odyssey", rating: 9.7, image: "https://picsum.photos/200/300?random=10" },
-                { title: "Chrono Shift", rating: 9.6, image: "https://picsum.photos/200/300?random=11" },
-                { title: "Neural Interface", rating: 9.5, image: "https://picsum.photos/200/300?random=12" },
-                { title: "Stellar Convergence", rating: 9.4, image: "https://picsum.photos/200/300?random=13" },
-                { title: "Quantum Paradox", rating: 9.3, image: "https://picsum.photos/200/300?random=14" }
-            ],
-            tvShows: [
-                { title: "Cyber Chronicles", rating: 8.9, image: "https://picsum.photos/200/300?random=15" },
-                { title: "Neon Nights", rating: 9.2, image: "https://picsum.photos/200/300?random=16" },
-                { title: "Dystopian Diaries", rating: 8.7, image: "https://picsum.photos/200/300?random=17" },
-                { title: "Virtual Vortex", rating: 9.0, image: "https://picsum.photos/200/300?random=18" },
-                { title: "Augmented Reality", rating: 8.8, image: "https://picsum.photos/200/300?random=19" },
-                { title: "Quantum Leap", rating: 9.1, image: "https://picsum.photos/200/300?random=25" },
-                { title: "Neon Genesis", rating: 9.3, image: "https://picsum.photos/200/300?random=26" },
-                { title: "Cyber Punk'd", rating: 8.5, image: "https://picsum.photos/200/300?random=27" },
-                { title: "Digital Dreamscape", rating: 8.9, image: "https://picsum.photos/200/300?random=28" },
-                { title: "AI Uprising", rating: 9.4, image: "https://picsum.photos/200/300?random=29" }
-            ],
-            adultContent: [
-                { title: "After Dark", rating: 7.8, image: "https://picsum.photos/200/300?random=20" },
-                { title: "Midnight Rendezvous", rating: 8.1,image: "https://picsum.photos/200/300?random=21" },
-                { title: "Sensual Cyberpunk", rating: 7.9, image: "https://picsum.photos/200/300?random=22" },
-                { title: "Neon Desires", rating: 8.0, image: "https://picsum.photos/200/300?random=23" },
-                { title: "Virtual Passion", rating: 7.7, image: "https://picsum.photos/200/300?random=24" },
-                { title: "Electric Dreams", rating: 8.2, image: "https://picsum.photos/200/300?random=30" },
-                { title: "Cyber Seduction", rating: 7.6, image: "https://picsum.photos/200/300?random=31" },
-                { title: "Neon Nights: Uncut", rating: 8.3, image: "https://picsum.photos/200/300?random=32" },
-                { title: "Digital Desires", rating: 7.5, image: "https://picsum.photos/200/300?random=33" },
-                { title: "Holographic Lovers", rating: 8.4, image: "https://picsum.photos/200/300?random=34" }
-            ],
-            genres:[
-            { title: "After Dark", rating: 7.8, image: "https://picsum.photos/200/300?random=20" }
-            ]
-        };
-
-        function createMovieCard(movie, isAdult = false) {
+    
+        // Function to create movie poster HTML
+        function createMoviePoster(movie) {
             return `
-                <div class="movie-card${isAdult ? ' adult-content' : ''}">
-                    <img src="${movie.image}" alt="${movie.title}">
-                    <div class="movie-info">
-                        <h3 class="movie-title">${movie.title}</h3>
-                        <p class="movie-rating">${movie.rating}/10</p>
+                <div class="swiper-slide">
+                    <div class="movie-poster" data-movie-id="${movie.id}">
+                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        <div class="movie-title">${movie.title}</div>
                     </div>
                 </div>
             `;
         }
-
-        function loadPage(page) {
-            const contentDiv = document.getElementById('content');
-            contentDiv.style.opacity = 0;
-            
-            setTimeout(() => {
-                let content = '';
-                switch (page) {
-                    case 'home':
-                        content = `
-                            <section id="featured-movie" class="section">
-                                <h1>Featured</h1>
-                                <div class="movie-grid">
-                                    ${movieData.featured.map(movie => createMovieCard(movie)).join('')}
-                                </div>
-                            </section>
-                            <section id="trending-movies" class="section">
-                                <h2>Trending Now</h2>
-                                <div class="movie-grid">
-                                    ${movieData.movies.slice(0, 6).map(movie => createMovieCard(movie)).join('')}
-                                </div>
-                            </section>
-                            <section id="popular-tvshows" class="section">
-                                <h2>Popular TV Shows</h2>
-                                <div class="movie-grid">
-                                    ${movieData.tvShows.slice(0, 6).map(show => createMovieCard(show)).join('')}
-                                </div>
-                            </section>
-                        `;
-                        break;
-                    case 'movies':
-                        content = `
-                            <section id="all-movies" class="section">
-                                <h1>All Movies</h1>
-                                <div class="movie-grid">
-                                    ${movieData.movies.map(movie => createMovieCard(movie)).join('')}
-                                </div>
-                            </section>
-                        `;
-                        break;
-                    case 'tvshows':
-                        content = `
-                            <section id="all-tvshows" class="section">
-                                <h1>All TV Shows</h1>
-                                <div class="movie-grid">
-                                    ${movieData.tvShows.map(show => createMovieCard(show)).join('')}
-                                </div>
-                            </section>
-                        `;
-                        break;
-                    case 'adult':
-                        content = `
-                            <section id="adult-content" class="section">
-                                <h1>18+ Content</h1>
-                                <div class="movie-grid">
-                                    ${movieData.adultContent.map(movie => createMovieCard(movie, true)).join('')}
-                                </div>
-                            </section>
-                        `;
-                        break;
-                    case 'genres':
-                        content = `
-                            <section id="adult-content" class="section">
-                                <h1>genres</h1>
-                                <div class="movie-grid">
-                                    ${movieData.genres.map(movie => createMovieCard(movie, true)).join('')}
-                                </div>
-                            </section>
-                        `;
-                        break;
-                    default:
-                        content = `
-                            <section class="section">
-                                <h1>${page.charAt(0).toUpperCase() + page.slice(1)}</h1>
-                                <p>This page is under construction. Check back soon for updates!</p>
-                            </section>
-                        `;
-                }
-                contentDiv.innerHTML = content;
-                contentDiv.style.opacity = 1;
-            }, 300);
+    
+        // Function to display movies
+        function displayMovies(moviesToShow) {
+            const moviesGrid = document.getElementById('movies-grid');
+            moviesGrid.innerHTML = '';
+            moviesToShow.forEach(movie => {
+                const movieElement = document.createElement('div');
+                movieElement.className = 'movie-poster';
+                movieElement.setAttribute('data-movie-id', movie.id);
+                movieElement.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                    <div class="movie-title">${movie.title}</div>
+                `;
+                moviesGrid.appendChild(movieElement);
+            });
         }
-
-        // Event listeners for navigation
-        document.querySelectorAll('nav a, .mobile-nav a, .sidebar a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const page = e.target.closest('a').dataset.page;
-                document.querySelectorAll('nav a, .mobile-nav a, .sidebar a').forEach(a => a.classList.remove('active'));
-                document.querySelectorAll(`nav a[data-page="${page}"], .mobile-nav a[data-page="${page}"], .sidebar a[data-page="${page}"]`).forEach(a => a.classList.add('active'));
-                loadPage(page);
-                closeSidebar();
+    
+        // Function to search movies
+        function searchMovies(searchTerm, movies) {
+            const filteredMovies = movies.filter(movie =>
+                movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                movie.genre.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            displayMovies(filteredMovies);
+        }
+    
+        // Function to set featured movie
+        function setFeaturedMovie(movie) {
+            document.getElementById('home').style.backgroundImage = `url(${movie.poster})`;
+            document.getElementById('featured-title').textContent = movie.title;
+            document.getElementById('featured-description').textContent = movie.description;
+        }
+    
+        // Function to show movie details
+        function showMovieDetails(movie) {
+            document.getElementById('movie-details-poster').src = movie.poster;
+            document.getElementById('movie-details-title').textContent = movie.title;
+            document.getElementById('movie-details-info').textContent = `${movie.year} | ${movie.genre} | Rating: ${movie.rating}`;
+            document.getElementById('movie-details-description').textContent = movie.description;
+            document.getElementById('movie-details-play').href = movie.playLink;
+            document.getElementById('movie-details-download').href = movie.downloadLink;
+            document.getElementById('movie-details').style.display = 'flex';
+        }
+    
+        // Document ready function
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch movie data
+            fetchMovieData().then(data => {
+                const allMovies = data.allMovies;
+                const trendingMovies = data.trendingMovies;
+                const topRatedMovies = data.topRatedMovies;
+    
+                // Set featured movie
+                setFeaturedMovie(allMovies[0]);
+    
+                // Populate carousels
+                const trendingCarousel = document.getElementById('trending-carousel');
+                const topRatedCarousel = document.getElementById('top-rated-carousel');
+    
+                trendingMovies.forEach(movie => {
+                    trendingCarousel.innerHTML += createMoviePoster(movie);
+                });
+    
+                topRatedMovies.forEach(movie => {
+                    topRatedCarousel.innerHTML += createMoviePoster(movie);
+                });
+    
+                // Initialize Swiper
+                const swiperOptions = {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    breakpoints: {
+                        320: {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        480: {
+                            slidesPerView: 3,
+                            spaceBetween: 10
+                        },
+                        640: {
+                            slidesPerView: 4,
+                            spaceBetween: 10
+                        },
+                        768: {
+                            slidesPerView: 5,
+                            spaceBetween: 10
+                        }
+                    }
+                };
+    
+                new Swiper('.trending-carousel', swiperOptions);
+                new Swiper('.top-rated-carousel', swiperOptions);
+    
+                // Display all movies initially
+                displayMovies(allMovies);
+    
+                // Set up search functionality
+                const searchInput = document.getElementById('side-nav-search-input');
+                const searchButton = document.getElementById('side-nav-search-button');
+    
+                function performSearch() {
+                    const searchTerm = searchInput.value;
+                    searchMovies(searchTerm, allMovies);
+                }
+    
+                searchInput.addEventListener('input', performSearch);
+                searchButton.addEventListener('click', performSearch);
+    
+                // Toggle side nav
+                document.getElementById('side-nav-toggle').addEventListener('click', function () {
+                    document.getElementById('side-nav').classList.add('open');
+                });
+    
+                document.getElementById('side-nav-close').addEventListener('click', function () {
+                    document.getElementById('side-nav').classList.remove('open');
+                });
+    
+                // Show movie details when a movie poster is clicked
+                document.addEventListener('click', function (event) {
+                    if (event.target.closest('.movie-poster')) {
+                        const movieId = parseInt(event.target.closest('.movie-poster').getAttribute('data-movie-id'));
+                        const movie = allMovies.find(m => m.id === movieId);
+                        if (movie) {
+                            showMovieDetails(movie);
+                        }
+                    }
+                });
+    
+                // Close movie details
+                document.getElementById('movie-details-close').addEventListener('click', function () {
+                    document.getElementById('movie-details').style.display = 'none';
+                });
+    
+                // Smooth scrolling for navigation links
+                document.querySelectorAll('nav a').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+    
+                // Change header background on scroll
+                window.addEventListener('scroll', function () {
+                    const header = document.getElementById('header');
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+    
+                // Mobile menu toggle
+                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                const navMenu = document.getElementById('nav-menu');
+    
+                mobileMenuToggle.addEventListener('click', function () {
+                    navMenu.classList.toggle('show');
+                });
+    
+                // Close mobile menu when a link is clicked
+                navMenu.addEventListener('click', function (e) {
+                    if (e.target.tagName === 'A') {
+                        navMenu.classList.remove('show');
+                    }
+                });
             });
         });
-
-        // Hamburger menu functionality
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        const sidebar = document.querySelector('.sidebar');
-        const sidebarClose = document.querySelector('.sidebar-close');
-
-        function openSidebar() {
-            sidebar.classList.add('active');
-        }
-
-        function closeSidebar() {
-            sidebar.classList.remove('active');
-        }
-
-        hamburgerMenu.addEventListener('click', openSidebar);
-        sidebarClose.addEventListener('click', closeSidebar);
-
-        // Parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            document.body.style.backgroundPositionY = `${scrollY * 0.5}px`;
-        });
-
-        // Reactive header
-        const header = document.querySelector('header');
-        let lastScrollY = window.scrollY;
-
-        window.addEventListener('scroll', () => {
-            if (lastScrollY < window.scrollY) {
-                header.classList.add('header--hidden');
-            } else {
-                header.classList.remove('header--hidden');
-            }
-            lastScrollY = window.scrollY;
-        });
-
-        // Initial page load
-        loadPage('home');
     </script>
+    
+    
+    
 </body>
 </html>
