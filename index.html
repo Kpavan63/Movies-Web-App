@@ -131,9 +131,15 @@
             padding-top: 5rem;
         }
 
+        .featured-movie-slider {
+            height: 80vh;
+            width: 100%;
+            display: none;
+        }
+
         .featured-movie {
             position: relative;
-            height: 80vh;
+            height: 100%;
             background-size: cover;
             background-position: center;
             display: flex;
@@ -198,7 +204,7 @@
         .swiper-slide {
             text-align: center;
             font-size: 18px;
-            background: #fff;
+            background: #fffafa;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -400,10 +406,10 @@
             #movies-grid {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: center; /* Center the posters */
+                justify-content: center;
             }
             .movie-poster {
-                width: 150px; /* Smaller width for mobile screens */
+                width: 150px;
             }
             .movie-details {
                 position: fixed;
@@ -424,6 +430,16 @@
                 height: auto;
                 margin-bottom: 1rem;
             }
+            .featured-movie-slider {
+                height: 60vh;
+                width: 100%;
+                display: flex;
+            }
+            .swiper-button-prev{
+                color: #e50914;
+                font-weight: 900;
+            }
+    
         }
 
         @media (min-width: 769px) {
@@ -437,7 +453,6 @@
             }
         }
 
-        /* Animation for nav items */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -488,12 +503,14 @@
     </div>
 
     <main>
-        <section id="home" class="featured-movie" style="display: none;">
-            <div class="featured-content">
-                <h2 class="featured-title" id="featured-title">Movie Title</h2>
-                <p class="featured-description" id="featured-description">Movie description goes here...</p>
-                <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
-                <a href="#" class="btn"><i class="fas fa-info-circle"></i> More Info</a>
+        <section id="home" class="featured-movie-slider">
+            <div class="swiper featured-swiper">
+                <div class="swiper-wrapper" id="featured-carousel">
+                    <!-- Featured movies will be dynamically added here -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </section>
 
@@ -528,7 +545,6 @@
             <span class="movie-details-close" id="movie-details-close">&times;</span>
             <center>
                 <img id="movie-details-poster" class="movie-details-poster" src="" alt="Movie Poster">
-
             </center>
             <h2 id="movie-details-title" class="movie-details-title"></h2>
             <p id="movie-details-info" class="movie-details-info"></p>
@@ -580,9 +596,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
-        // Function to fetch movie data from JSON
         function fetchMovieData() {
-            return fetch('movies.json') // Update the path to your JSON file
+            return fetch('movies.json')
                 .then(response => response.json())
                 .then(data => {
                     return {
@@ -593,20 +608,33 @@
                 })
                 .catch(error => console.error('Error loading the movie data:', error));
         }
-    
-        // Function to create movie poster HTML
-        function createMoviePoster(movie) {
+
+        function createMoviePoster(movie, category) {
             return `
                 <div class="swiper-slide">
-                    <div class="movie-poster" data-movie-id="${movie.id}">
+                    <div class="movie-poster" data-movie-id="${movie.id}" data-category="${category}">
                         <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
                         <div class="movie-title">${movie.title}</div>
                     </div>
                 </div>
             `;
         }
-    
-        // Function to display movies
+
+        function createFeaturedMovieSlide(movie) {
+            return `
+                <div class="swiper-slide">
+                    <div class="featured-movie" style="background-image: url(${movie.poster});">
+                        <div class="featured-content">
+                            <h2 class="featured-title">${movie.title}</h2>
+                            <p class="featured-description">${movie.description}</p>
+                            <a href="${movie.playLink}" class="btn btn-primary"><i class="fas fa-play"></i> Play</a>
+                            <a href="#" class="btn" onclick="showMovieDetails(${JSON.stringify(movie)})"><i class="fas fa-info-circle"></i> More Info</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         function displayMovies(moviesToShow) {
             const moviesGrid = document.getElementById('movies-grid');
             moviesGrid.innerHTML = '';
@@ -614,6 +642,7 @@
                 const movieElement = document.createElement('div');
                 movieElement.className = 'movie-poster';
                 movieElement.setAttribute('data-movie-id', movie.id);
+                movieElement.setAttribute('data-category', 'allMovies');
                 movieElement.innerHTML = `
                     <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
                     <div class="movie-title">${movie.title}</div>
@@ -621,8 +650,7 @@
                 moviesGrid.appendChild(movieElement);
             });
         }
-    
-        // Function to search movies
+
         function searchMovies(searchTerm, movies) {
             const filteredMovies = movies.filter(movie =>
                 movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -630,15 +658,7 @@
             );
             displayMovies(filteredMovies);
         }
-    
-        // Function to set featured movie
-        function setFeaturedMovie(movie) {
-            document.getElementById('home').style.backgroundImage = `url(${movie.poster})`;
-            document.getElementById('featured-title').textContent = movie.title;
-            document.getElementById('featured-description').textContent = movie.description;
-        }
-    
-        // Function to show movie details
+
         function showMovieDetails(movie) {
             document.getElementById('movie-details-poster').src = movie.poster;
             document.getElementById('movie-details-title').textContent = movie.title;
@@ -648,31 +668,49 @@
             document.getElementById('movie-details-download').href = movie.downloadLink;
             document.getElementById('movie-details').style.display = 'flex';
         }
-    
-        // Document ready function
+
         document.addEventListener('DOMContentLoaded', function () {
-            // Fetch movie data
+            let allMovies, trendingMovies, topRatedMovies;
+
             fetchMovieData().then(data => {
-                const allMovies = data.allMovies;
-                const trendingMovies = data.trendingMovies;
-                const topRatedMovies = data.topRatedMovies;
-    
-                // Set featured movie
-                setFeaturedMovie(allMovies[0]);
-    
-                // Populate carousels
+                allMovies = data.allMovies;
+                trendingMovies = data.trendingMovies;
+                topRatedMovies = data.topRatedMovies;
+
+                const featuredCarousel = document.getElementById('featured-carousel');
                 const trendingCarousel = document.getElementById('trending-carousel');
                 const topRatedCarousel = document.getElementById('top-rated-carousel');
-    
+
+                allMovies.forEach(movie => {
+                    featuredCarousel.innerHTML += createFeaturedMovieSlide(movie);
+                });
+
                 trendingMovies.forEach(movie => {
-                    trendingCarousel.innerHTML += createMoviePoster(movie);
+                    trendingCarousel.innerHTML += createMoviePoster(movie, 'trending');
                 });
-    
+
                 topRatedMovies.forEach(movie => {
-                    topRatedCarousel.innerHTML += createMoviePoster(movie);
+                    topRatedCarousel.innerHTML += createMoviePoster(movie, 'topRated');
                 });
-    
-                // Initialize Swiper
+
+                new Swiper('.featured-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    loop: true,
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+
                 const swiperOptions = {
                     slidesPerView: 5,
                     spaceBetween: 10,
@@ -707,51 +745,59 @@
                         }
                     }
                 };
-    
+
                 new Swiper('.trending-carousel', swiperOptions);
                 new Swiper('.top-rated-carousel', swiperOptions);
-    
-                // Display all movies initially
+
                 displayMovies(allMovies);
-    
-                // Set up search functionality
+
                 const searchInput = document.getElementById('side-nav-search-input');
                 const searchButton = document.getElementById('side-nav-search-button');
-    
+
                 function performSearch() {
                     const searchTerm = searchInput.value;
                     searchMovies(searchTerm, allMovies);
                 }
-    
+
                 searchInput.addEventListener('input', performSearch);
                 searchButton.addEventListener('click', performSearch);
-    
-                // Toggle side nav
+
                 document.getElementById('side-nav-toggle').addEventListener('click', function () {
                     document.getElementById('side-nav').classList.add('open');
                 });
-    
+
                 document.getElementById('side-nav-close').addEventListener('click', function () {
                     document.getElementById('side-nav').classList.remove('open');
                 });
-    
-                // Show movie details when a movie poster is clicked
+
                 document.addEventListener('click', function (event) {
-                    if (event.target.closest('.movie-poster')) {
-                        const movieId = parseInt(event.target.closest('.movie-poster').getAttribute('data-movie-id'));
-                        const movie = allMovies.find(m => m.id === movieId);
+                    const moviePoster = event.target.closest('.movie-poster');
+                    if (moviePoster) {
+                        const movieId = parseInt(moviePoster.getAttribute('data-movie-id'));
+                        const category = moviePoster.getAttribute('data-category');
+                        let movie;
+
+                        switch (category) {
+                            case 'trending':
+                                movie = trendingMovies.find(m => m.id === movieId);
+                                break;
+                            case 'topRated':
+                                movie = topRatedMovies.find(m => m.id === movieId);
+                                break;
+                            default:
+                                movie = allMovies.find(m => m.id === movieId);
+                        }
+
                         if (movie) {
                             showMovieDetails(movie);
                         }
                     }
                 });
-    
-                // Close movie details
+
                 document.getElementById('movie-details-close').addEventListener('click', function () {
                     document.getElementById('movie-details').style.display = 'none';
                 });
-    
-                // Smooth scrolling for navigation links
+
                 document.querySelectorAll('nav a').forEach(anchor => {
                     anchor.addEventListener('click', function (e) {
                         e.preventDefault();
@@ -765,8 +811,7 @@
                         }
                     });
                 });
-    
-                // Change header background on scroll
+
                 window.addEventListener('scroll', function () {
                     const header = document.getElementById('header');
                     if (window.scrollY > 50) {
@@ -775,16 +820,14 @@
                         header.classList.remove('scrolled');
                     }
                 });
-    
-                // Mobile menu toggle
+
                 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
                 const navMenu = document.getElementById('nav-menu');
-    
+
                 mobileMenuToggle.addEventListener('click', function () {
                     navMenu.classList.toggle('show');
                 });
-    
-                // Close mobile menu when a link is clicked
+
                 navMenu.addEventListener('click', function (e) {
                     if (e.target.tagName === 'A') {
                         navMenu.classList.remove('show');
@@ -793,8 +836,5 @@
             });
         });
     </script>
-    
-    
-    
 </body>
 </html>
