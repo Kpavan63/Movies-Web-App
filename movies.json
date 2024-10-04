@@ -1,184 +1,52 @@
 {
     "allMovies": [
         {
-            "id": 1,
-            "title": "The Godfather",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
-            "description": "The aging patriarch of an organized crime dynasty transfers control to his son.",
-            "genre": "Crime",
-            "rating": 9.2,
-            "year": 1972,
-            "playLink": "https://example.com/play/godfather",
-            "downloadLink": "https://example.com/download/godfather"
+            "title": "Mr. Bachchan",
+            "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Mr._Bachchan_film_poster.jpg/220px-Mr._Bachchan_film_poster.jpg",
+            "description": "The film is inspired by the real-life income tax raid conducted on Indian industrialist Sardar Inder Singh",
+            "genre": "Soundtrack",
+            "rating": 9,
+            "year": 2024,
+            "playLink": "https://youtu.be/L8-Sa6pbbLg?si=mhJm5ESY1gY98ta_",
+            "downloadLink": "https://youtu.be/L8-Sa6pbbLg?si=mhJm5ESY1gY98ta_",
+            "id": 1
         },
         {
-            "id": 2,
-            "title": "Inception",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/2/28/Inception_ver3.jpg",
-            "description": "A thief enters people's dreams to steal secrets.",
-            "genre": "Sci-Fi",
-            "rating": 8.8,
-            "year": 2010,
-            "playLink": "https://example.com/play/inception",
-            "downloadLink": "https://example.com/download/inception"
-        },
-        {
-            "id": 3,
-            "title": "The Dark Knight",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg",
-            "description": "Batman faces his greatest challenge yet: the Joker.",
-            "genre": "Action",
-            "rating": 9.0,
-            "year": 2008,
-            "playLink": "https://example.com/play/dark-knight",
-            "downloadLink": "https://example.com/download/dark-knight"
-        },
-        {
-            "id": 4,
-            "title": "The Shawshank Redemption",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
-            "description": "Two imprisoned men bond over a number of years.",
-            "genre": "Drama",
-            "rating": 9.3,
-            "year": 1994,
-            "playLink": "https://example.com/play/shawshank-redemption",
-            "downloadLink": "https://example.com/download/shawshank-redemption"
-        },
-        {
-            "id": 5,
-            "title": "Forrest Gump",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg",
-            "description": "The life journey of a man with low intelligence but good intentions.",
-            "genre": "Drama",
-            "rating": 8.8,
-            "year": 1994,
-            "playLink": "https://example.com/play/forrest-gump",
-            "downloadLink": "https://example.com/download/forrest-gump"
-        },
-        {
-            "id": 6,
-            "title": "Pulp Fiction",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/8/82/Pulp_Fiction_cover.jpg",
-            "description": "The lives of various characters intertwine in four tales of violence and redemption.",
-            "genre": "Crime",
-            "rating": 8.9,
-            "year": 1994,
-            "playLink": "https://example.com/play/pulp-fiction",
-            "downloadLink": "https://example.com/download/pulp-fiction"
-        },
-        {
-            "id": 7,
-            "title": "The Matrix",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
-            "description": "A computer hacker learns from mysterious rebels about the true nature of his reality.",
-            "genre": "Action",
-            "rating": 8.7,
-            "year": 1999,
-            "playLink": "https://example.com/play/matrix",
-            "downloadLink": "https://example.com/download/matrix"
-        },
-        {
-            "id": 8,
-            "title": "Fight Club",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/6/60/Fight_Club_poster.jpg",
-            "description": "An insomniac office worker forms an underground fight club.",
-            "genre": "Drama",
-            "rating": 8.8,
-            "year": 1999,
-            "playLink": "https://example.com/play/fight-club",
-            "downloadLink": "https://example.com/download/fight-club"
-        },
-        {
-            "id": 9,
-            "title": "The Lord of the Rings: The Return of the King",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/9/9e/The_Lord_of_the_Rings_-_The_Return_of_the_King.jpg",
-            "description": "The final confrontation between the forces of good and evil fighting for control of the future of Middle-earth.",
-            "genre": "Fantasy",
-            "rating": 9.0,
-            "year": 2003,
-            "playLink": "https://example.com/play/return-of-the-king",
-            "downloadLink": "https://example.com/download/return-of-the-king"
-        },
-        {
-            "id": 10,
-            "title": "The Social Network",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/7/7b/Social_network_poster.jpg",
-            "description": "As Harvard students create the social network that would become Facebook, they deal with both personal and legal issues.",
-            "genre": "Drama",
-            "rating": 7.7,
-            "year": 2010,
-            "playLink": "https://example.com/play/social-network",
-            "downloadLink": "https://example.com/download/social-network"
+            "title": " Double iSmart",
+            "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Double_iSmart.jpg/220px-Double_iSmart.jpg",
+            "description": "Big Bull, a notorious assassin, wants to achieve immortality and decides to transfer his memories to \"iSmart\" Shankar",
+            "genre": "Action,Thriller,Adventure,Science fiction",
+            "rating": 2.9,
+            "year": 2024,
+            "playLink": "https://youtu.be/fPFt_okbneA?si=csNWTAbEWbHj0rWT",
+            "downloadLink": "https://youtu.be/fPFt_okbneA?si=csNWTAbEWbHj0rWT",
+            "id": 2
         }
     ],
     "trending": [
         {
-            "id": 1,
-            "title": "The Godfather",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
-            "description": "The aging patriarch of an organized crime dynasty transfers control to his son.",
-            "genre": "Crime",
-            "rating": 9.2,
-            "year": 1972,
-            "playLink": "https://example.com/play/godfather",
-            "downloadLink": "https://example.com/download/godfather"
-        },
-        {
-            "id": 2,
-            "title": "Inception",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/2/28/Inception_ver3.jpg",
-            "description": "A thief enters people's dreams to steal secrets.",
-            "genre": "Sci-Fi",
-            "rating": 8.8,
-            "year": 2010,
-            "playLink": "https://example.com/play/inception",
-            "downloadLink": "https://example.com/download/inception"
-        },
-        {
-            "id": 3,
-            "title": "The Dark Knight",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg",
-            "description": "Batman faces his greatest challenge yet: the Joker.",
-            "genre": "Action",
-            "rating": 9.0,
-            "year": 2008,
-            "playLink": "https://example.com/play/dark-knight",
-            "downloadLink": "https://example.com/download/dark-knight"
+            "title": "Saripodhaa Sanivaaram",
+            "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Saripodhaa_Sanivaaram.jpg/220px-Saripodhaa_Sanivaaram.jpg",
+            "description": "Surya is an insurance agent at NLIC, a public sector firm, struggling with significant anger management issues. As a child, his mother, Chayadevi, made him promise to channel his anger only on one specific day each week",
+            "genre": "Action,Thriller,Adventure",
+            "rating": 7.2,
+            "year": 2024,
+            "playLink": "https://youtu.be/dkx07ZvjKE4?si=g07RSpVZQx38txwk",
+            "downloadLink": "https://youtu.be/dkx07ZvjKE4?si=g07RSpVZQx38txwk",
+            "id": 1
         }
     ],
     "topRated": [
         {
-            "id": 4,
-            "title": "The Shawshank Redemption",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
-            "description": "Two imprisoned men bond over a number of years.",
-            "genre": "Drama",
-            "rating": 9.3,
-            "year": 1994,
-            "playLink": "https://example.com/play/shawshank-redemption",
-            "downloadLink": "https://example.com/download/shawshank-redemption"
-        },
-        {
-            "id": 5,
-            "title": "Forrest Gump",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg",
-            "description": "The life journey of a man with low intelligence but good intentions.",
-            "genre": "Drama",
-            "rating": 8.8,
-            "year": 1994,
-            "playLink": "https://example.com/play/forrest-gump",
-            "downloadLink": "https://example.com/download/forrest-gump"
-        },
-        {
-            "id": 6,
-            "title": "Pulp Fiction",
-            "poster": "https://upload.wikimedia.org/wikipedia/en/8/82/Pulp_Fiction_cover.jpg",
-            "description": "The lives of various characters intertwine in four tales of violence and redemption.",
-            "genre": "Crime",
-            "rating": 8.9,
-            "year": 1994,
-            "playLink": "https://example.com/play/pulp-fiction",
-            "downloadLink": "https://example.com/download/pulp-fiction"
+            "title": "Kalki 2898 AD",
+            "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Kalki_2898_AD.jpg/220px-Kalki_2898_AD.jpg",
+            "description": "Following the Kurukshetra War, Ashwatthama attempts to kill Uttar\u0101's unborn child. For committing the act, Krishna, the 8th avatar of Vishnu, curses him to roam the earth as an immortal and witness humanity's misery as a result of societal and moral deterioration during the Kali Yuga",
+            "genre": "Action,Thriller,Adventure,Science,",
+            "rating": 7.1,
+            "year": 2024,
+            "playLink": "https://youtu.be/tdSWciABBDs?si=BV4Hp68CvG63zvWu",
+            "downloadLink": "https://youtu.be/tdSWciABBDs?si=BV4Hp68CvG63zvWu",
+            "id": 1
         }
     ]
 }
